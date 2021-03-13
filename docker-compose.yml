@@ -1,0 +1,25 @@
+version: "2"
+services:
+  valheim:
+    build: build
+    image: registry.home.divergentlogic.com/valheim:latest
+    container_name: valheim
+    hostname: valheim
+    tty: true
+    stdin_open: true
+    restart: always
+    environment:
+    - VALHEIM_SERVER_NAME=Test
+    - VALHEIM_SERVER_PASSWORD=test123
+    - VALHEIM_SERVER_WORLD=test
+    - VALHEIM_SERVER_PORT=2456
+    ports:
+      - "2456-2458:2456-2458/udp"
+    volumes:
+      - ./data:/data
+      - ./game:/opt/valheim
+    logging:
+      options:
+        max-size: "100k"
+        max-file: "2"
+
